@@ -1,6 +1,10 @@
 #KVB Rad Positions
 
-Dieser Service fragt in Regelmäßigen Abständen (etwa alle 5 min) die Positionen der KVB-Fahrräder ab. Er speichert nur die Informationen je Fahrrad. Nur die Räder werden gespeichert, die gerade nicht verwendet werden. Die Position eines Rades wird nur dann abgespeichert, wenn sich die Position geändert hat.
+Dieser Service soll in regelmäßigen Abständen die Positionen der KVB-Fahrräder abfragen. Er speichert nur die Informationen je Fahrrad. Nur die Räder werden gespeichert, die gerade nicht verwendet werden. Die Position eines Rades wird nur dann abgespeichert, wenn sich die Position geändert hat.
+
+## Entwicklungsstand
+
+Dieser Service wird noch entwickelt.
 
 ## Bauen des Service
 
