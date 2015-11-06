@@ -38,7 +38,7 @@ public abstract class SelectBike {
 		for (BikeFromDb bike : bikeList) {
 			bikeBoList.add(new BikeDao(bike).getBikeBo());
 		}
-
+		conn.close();
 	}
 
 	public List<BikeBo> getBikeBoList() {
