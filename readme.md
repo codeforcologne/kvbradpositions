@@ -2,6 +2,12 @@
 
 Dieser Service soll in regelmäßigen Abständen die Positionen der KVB-Fahrräder abfragen. Er speichert nur die Informationen je Fahrrad. Nur die Räder werden gespeichert, die gerade nicht verwendet werden. Die Position eines Rades wird nur dann abgespeichert, wenn sich die Position geändert hat.
 
+## REST End Points
+
+- /kvbradpositions/service/geojson; liefert alle Information im geojson - format
+- /kvbradpositions/service/datatable; liefert alle Inforamationen im datatable - format
+- /kvbradpositions/service/geojson/21577; liefert alle Informationen zu einem durch die nummer identifizierten Fahrrad
+
 ## Entwicklungsstand
 
 Dieser Service wird noch entwickelt.
