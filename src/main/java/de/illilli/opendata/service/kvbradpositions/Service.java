@@ -18,8 +18,8 @@ public class Service {
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
 	 * LineString. Example: <a
-	 * href="http://localhost:8080/kvbradpositions/service">/kvbradpositions
-	 * /service</a>
+	 * href="http://localhost:8080/kvbradpositions/service/geojson"
+	 * >/kvbradpositions /service/geojson</a>
 	 * 
 	 * @return
 	 * @throws IOException
@@ -60,8 +60,8 @@ public class Service {
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
 	 * LineString. Example: <a
-	 * href="http://localhost:8080/kvbradpositions/service/21577"
-	 * >/kvbradpositions/service/&lt;number&gt;</a>
+	 * href="http://localhost:8080/kvbradpositions/service/geojson/21577"
+	 * >/kvbradpositions/service/geojson/&lt;number&gt;</a>
 	 * 
 	 * @param number
 	 * @return
@@ -71,7 +71,7 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/{number}")
+	@Path("/geojson/{number}")
 	public String getSimpleLineStridsng(@PathParam("number") int number)
 			throws SQLException, NamingException, IOException {
 		Facade facade = new BikesAndPositionsFacade(
