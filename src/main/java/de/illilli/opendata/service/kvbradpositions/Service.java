@@ -28,7 +28,7 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/")
+	@Path("/geojson")
 	public String getAllBikesAndPositions() throws SQLException,
 			NamingException, IOException {
 		Facade facade = new BikesAndPositionsFacade(
