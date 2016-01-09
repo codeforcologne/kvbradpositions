@@ -17,22 +17,20 @@ import de.illilli.jdbc.DbUtilsBeanListHandler;
 
 public abstract class SelectBike {
 
+	static final int ONEDAY = 1000 * 60 * 60 * 24;
 	String queryString;
 
 	private List<BikeBo> bikeBoList = new ArrayList<BikeBo>();
 
-	void runSelect(Object... params) throws SQLException, NamingException,
-			IOException {
+	void runSelect(Object... params) throws SQLException, NamingException, IOException {
 
 		Connection conn = ConnectionFactory.getConnection();
-		InputStream inputStream = this.getClass().getResourceAsStream(
-				queryString);
+		InputStream inputStream = this.getClass().getResourceAsStream(queryString);
 		String sql = IOUtils.toString(inputStream);
 
-		BeanListHandler<BikeFromDb> beanListHandler = new BeanListHandler<BikeFromDb>(
-				BikeFromDb.class);
-		DbUtilsBeanListHandler<BikeFromDb> rsh = new DbUtilsBeanListHandler<BikeFromDb>(
-				conn, beanListHandler, sql, params);
+		BeanListHandler<BikeFromDb> beanListHandler = new BeanListHandler<BikeFromDb>(BikeFromDb.class);
+		DbUtilsBeanListHandler<BikeFromDb> rsh = new DbUtilsBeanListHandler<BikeFromDb>(conn, beanListHandler, sql,
+				params);
 		List<BikeFromDb> bikeList = rsh.getList();
 
 		for (BikeFromDb bike : bikeList) {

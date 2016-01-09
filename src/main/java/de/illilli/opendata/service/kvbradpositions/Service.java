@@ -17,9 +17,9 @@ public class Service {
 
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
-	 * LineString. Example: <a
-	 * href="http://localhost:8080/kvbradpositions/service/geojson"
-	 * >/kvbradpositions /service/geojson</a>
+	 * LineString. Example:
+	 * <a href="http://localhost:8080/kvbradpositions/service/geojson" >
+	 * /kvbradpositions /service/geojson</a>
 	 * 
 	 * @return
 	 * @throws IOException
@@ -29,18 +29,37 @@ public class Service {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/geojson")
-	public String getAllBikesAndPositions() throws SQLException,
-			NamingException, IOException {
-		Facade facade = new BikesAndPositionsFacade(
-				new SelectForAllBikesAndPositions());
+	public String getAllBikesAndPositions() throws SQLException, NamingException, IOException {
+		Facade facade = new BikesAndPositionsFacade(new SelectForAllBikesAndPositions());
+		return facade.getJson();
+	}
+
+	/**
+	 * Method to return all positions of all bicyles like a GeoJson - LineString
+	 * newer than specified days. Example:
+	 * <a href="http://localhost:8080/kvbradpositions/service/geojson/1" >
+	 * /kvbradpositions /service/geojson/&lt;days&gt;</a>
+	 * 
+	 * @param days
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/geojson/{days}")
+	public String getAllBikesAndPositions(@PathParam("days") int days)
+			throws SQLException, NamingException, IOException {
+		Facade facade = new BikesAndPositionsFacade(new SelectForAllBikesAndPositions(days));
 		return facade.getJson();
 	}
 
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
-	 * LineString. Example: <a
-	 * href="http://localhost:8080/kvbradpositions/service/datatable"
-	 * >/kvbradpositions/service/datatable</a>
+	 * LineString. Example:
+	 * <a href="http://localhost:8080/kvbradpositions/service/datatable" >
+	 * /kvbradpositions/service/datatable</a>
 	 * 
 	 * @return
 	 * @throws SQLException
@@ -50,18 +69,16 @@ public class Service {
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/datatable")
-	public String getAllBikesForDataTables() throws SQLException,
-			NamingException, IOException {
-		Facade facade = new BikesDataTablesFacade(
-				new SelectForAllBikesAndPositions());
+	public String getAllBikesForDataTables() throws SQLException, NamingException, IOException {
+		Facade facade = new BikesDataTablesFacade(new SelectForAllBikesAndPositions());
 		return facade.getJson();
 	}
 
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
-	 * LineString. Example: <a
-	 * href="http://localhost:8080/kvbradpositions/service/geojson/21577"
-	 * >/kvbradpositions/service/geojson/&lt;number&gt;</a>
+	 * LineString. Example:
+	 * <a href="http://localhost:8080/kvbradpositions/service/geojson/21577" >
+	 * /kvbradpositions/service/geojson/&lt;number&gt;</a>
 	 * 
 	 * @param number
 	 * @return
@@ -71,11 +88,10 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/geojson/{number}")
+	@Path("/geojson/bike/{number}")
 	public String getSimpleLineStridsng(@PathParam("number") int number)
 			throws SQLException, NamingException, IOException {
-		Facade facade = new BikesAndPositionsFacade(
-				new SelectForBikeAndPositions(number));
+		Facade facade = new BikesAndPositionsFacade(new SelectForBikeAndPositions(number));
 		return facade.getJson();
 	}
 
