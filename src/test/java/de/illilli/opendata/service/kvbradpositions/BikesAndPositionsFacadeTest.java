@@ -35,7 +35,7 @@ public class BikesAndPositionsFacadeTest {
 		}.getType();
 		List<BikeBo> bikeList = gson.fromJson(json, type);
 
-		Facade facade = new BikesAndPositionsFacade(bikeList);
+		Facade facade = new GeoJsonLineStringFacade(bikeList);
 		String geoJson = facade.getJson();
 		System.out.println(geoJson);
 	}
@@ -57,7 +57,7 @@ public class BikesAndPositionsFacadeTest {
 		ConnectionFactory.setUpConnectionForJndi();
 
 		SelectBike selectBike = new SelectForAllBikesAndPositions();
-		Facade facade = new BikesAndPositionsFacade(selectBike);
+		Facade facade = new GeoJsonLineStringFacade(selectBike);
 		String json = facade.getJson();
 		System.out.println(json);
 

@@ -4,16 +4,24 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import de.illilli.opendata.service.Facade;
 
 @Path("/")
 public class Service {
+
+	@Context
+	private HttpServletRequest request;
+	@Context
+	private HttpServletResponse response;
 
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
@@ -30,7 +38,7 @@ public class Service {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/geojson")
 	public String getAllBikesAndPositions() throws SQLException, NamingException, IOException {
-		Facade facade = new BikesAndPositionsFacade(new SelectForAllBikesAndPositions());
+		Facade facade = new GeoJsonLineStringFacade(new SelectForAllBikesAndPositions());
 		return facade.getJson();
 	}
 
@@ -51,7 +59,7 @@ public class Service {
 	@Path("/geojson/{days}")
 	public String getAllBikesAndPositions(@PathParam("days") int days)
 			throws SQLException, NamingException, IOException {
-		Facade facade = new BikesAndPositionsFacade(new SelectForAllBikesAndPositions(days));
+		Facade facade = new GeoJsonLineStringFacade(new SelectForAllBikesAndPositions(days));
 		return facade.getJson();
 	}
 
@@ -91,7 +99,29 @@ public class Service {
 	@Path("/geojson/bike/{number}")
 	public String getSimpleLineStridsng(@PathParam("number") int number)
 			throws SQLException, NamingException, IOException {
-		Facade facade = new BikesAndPositionsFacade(new SelectForBikeAndPositions(number));
+		Facade facade = new GeoJsonLineStringFacade(new SelectForBikeAndPositions(number));
+		return facade.getJson();
+	}
+
+	/**
+	 * Method to return all positions of all bicyles like a GeoJson -
+	 * LineString. Example: <a href=
+	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition/geojson"
+	 * > /kvbradpositions/service/allbikeslatestposition/geojson</a>
+	 * 
+	 * @param number
+	 * @return
+	 * @throws SQLException
+	 * @throws NamingException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Path("/allbikeslatestposition/geojson")
+	public String getAllbikeslatestposition() throws SQLException, NamingException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		Facade facade = new LastPositionsFacade(new AskForAllbikeslatestposition().getBikesList());
 		return facade.getJson();
 	}
 

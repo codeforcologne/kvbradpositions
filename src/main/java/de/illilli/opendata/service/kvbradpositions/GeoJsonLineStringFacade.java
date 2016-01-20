@@ -24,19 +24,19 @@ import de.illilli.opendata.service.Facade;
  * This Facade returns GeoJson LineString for a List of
  *
  */
-public class BikesAndPositionsFacade implements Facade {
+public class GeoJsonLineStringFacade implements Facade {
 
 	private FeatureCollection featureCollection;
 	private List<BikeBo> bikeList;
 	final static String DATE_FORMAT = "dd.MM.yyyy hh:mm";
 
-	public BikesAndPositionsFacade(SelectBike selectBike) throws SQLException,
+	public GeoJsonLineStringFacade(SelectBike selectBike) throws SQLException,
 			NamingException, IOException {
 		this.bikeList = selectBike.getBikeBoList();
 		setFeatureCollection();
 	}
 
-	public BikesAndPositionsFacade(List<BikeBo> bikeList) throws SQLException,
+	public GeoJsonLineStringFacade(List<BikeBo> bikeList) throws SQLException,
 			NamingException, IOException {
 		this.bikeList = bikeList;
 		setFeatureCollection();
