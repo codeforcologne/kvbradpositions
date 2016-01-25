@@ -30,12 +30,9 @@ public class LastPositionsFacade implements Facade {
 	private List<BikeBo> bikeList;
 	private FeatureCollection featureCollection = new FeatureCollection();
 	final static String DATE_FORMAT = "dd.MM.yyyy hh:mm";
-	private AskForGeo<AddressBo> askForAddress;
 
-	public LastPositionsFacade(AskFor<List<BikeBo>> askForAllBikeslatestpositions, AskForGeo<AddressBo> askForAddress)
-			throws IOException {
+	public LastPositionsFacade(AskFor<List<BikeBo>> askForAllBikeslatestpositions) throws IOException {
 		this.bikeList = askForAllBikeslatestpositions.getData();
-		this.askForAddress = askForAddress;
 		setFeatureCollection();
 	}
 
@@ -43,7 +40,6 @@ public class LastPositionsFacade implements Facade {
 		for (BikeBo bike : bikeList) {
 			Feature feature = new Feature();
 			LngLatAlt lngLatAlt = new LngLatAlt(bike.getLng(), bike.getLat());
-			AddressBo address = askForAddress.getData(bike.getLng(), bike.getLat());
 			Point geometry = new Point(lngLatAlt);
 			feature.setGeometry(geometry);
 			Map<String, Object> properties = new Hashtable<String, Object>();
@@ -52,13 +48,6 @@ public class LastPositionsFacade implements Facade {
 			properties.put("bike", bike.getBike());
 			String timestamp = new SimpleDateFormat(DATE_FORMAT, Locale.GERMAN).format(bike.getTimestamp());
 			properties.put("timestamp", timestamp);
-
-			if (address != null) {
-				properties.put("road", address.getRoad() == null ? "" : address.getRoad());
-				properties.put("housenumber", address.getHousenumber() == null ? "" : address.getHousenumber());
-				properties.put("postcode", address.getPostcode() == null ? "" : address.getPostcode());
-				properties.put("city", address.getCity() == null ? "" : address.getCity());
-			}
 			feature.setProperties(properties);
 			featureCollection.add(feature);
 		}

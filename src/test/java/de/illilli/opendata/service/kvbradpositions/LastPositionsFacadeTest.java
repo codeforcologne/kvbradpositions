@@ -14,7 +14,7 @@ public class LastPositionsFacadeTest {
 	}
 
 	public static void main(String[] args) throws MalformedURLException, IOException {
-		Facade facade = new LastPositionsFacade(new AskForAllbikeslatestposition(), new AskForAddress());
+		Facade facade = new LastPositionsFacade(new AskForAllbikeslatestposition());
 		System.out.println(facade.getJson());
 	}
 
