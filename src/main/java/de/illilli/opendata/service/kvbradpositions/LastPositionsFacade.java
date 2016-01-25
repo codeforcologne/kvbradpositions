@@ -48,6 +48,8 @@ public class LastPositionsFacade implements Facade {
 			properties.put("bike", bike.getBike());
 			String timestamp = new SimpleDateFormat(DATE_FORMAT, Locale.GERMAN).format(bike.getTimestamp());
 			properties.put("timestamp", timestamp);
+			long unused = new Unused(bike.getTimestamp().getTime()).getDays();
+			properties.put("unused", unused);
 			feature.setProperties(properties);
 			featureCollection.add(feature);
 		}
