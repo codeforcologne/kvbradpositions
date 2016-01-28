@@ -1,0 +1,20 @@
+package de.illilli.opendata.service.kvbradpositions;
+
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Before;
+
+public class AskForAllbikesTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	public static void main(String[] args) {
+		AskFor<Map<Integer, List<BikeBo>>> askFor = new AskForAllbikes();
+		Map<Integer, List<BikeBo>> bikes = askFor.getData();
+
+	}
+
+}

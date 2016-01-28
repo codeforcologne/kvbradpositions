@@ -2,6 +2,7 @@ package de.illilli.opendata.service.kvbradpositions;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,7 @@ public class Service {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/geojson")
 	public String getAllBikesAndPositions() throws SQLException, NamingException, IOException {
-		Facade facade = new GeoJsonLineStringFacade(new SelectForAllBikesAndPositions());
+		Facade facade = new GeoJsonLineStringFacade(new AskForAllbikes());
 		return facade.getJson();
 	}
 
@@ -59,7 +60,8 @@ public class Service {
 	@Path("/geojson/{days}")
 	public String getAllBikesAndPositions(@PathParam("days") int days)
 			throws SQLException, NamingException, IOException {
-		Facade facade = new GeoJsonLineStringFacade(new SelectForAllBikesAndPositions(days));
+		long daysInMillis = System.currentTimeMillis() - TimeUnit.DAYS.toMillis(days);
+		Facade facade = new GeoJsonLineStringFacade(new AskForAllbikes(daysInMillis));
 		return facade.getJson();
 	}
 

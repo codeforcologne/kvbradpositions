@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import de.illilli.jdbc.ConnectionFactory;
 import de.illilli.jdbc.DbUtilsBeanListHandler;
 
+@Deprecated
 public abstract class SelectBike {
 
 	static final int ONEDAY = 1000 * 60 * 60 * 24;

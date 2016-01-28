@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 import javax.naming.NamingException;
 
+@Deprecated
 public class SelectForAllBikesAndPositions extends SelectBike {
 
 	public SelectForAllBikesAndPositions() throws SQLException, NamingException, IOException {

@@ -27,25 +27,29 @@ import de.illilli.opendata.service.Facade;
 public class GeoJsonLineStringFacade implements Facade {
 
 	private FeatureCollection featureCollection;
-	private List<BikeBo> bikeList;
+	Map<Integer, List<BikeBo>> bikeMap;
 	final static String DATE_FORMAT = "dd.MM.yyyy hh:mm";
 
-	public GeoJsonLineStringFacade(SelectBike selectBike) throws SQLException,
-			NamingException, IOException {
-		this.bikeList = selectBike.getBikeBoList();
+	@Deprecated
+	public GeoJsonLineStringFacade(SelectBike selectBike) throws SQLException, NamingException, IOException {
+		Bikes bikes = new Bikes(selectBike.getBikeBoList());
+		bikeMap = bikes.getBikeMap();
 		setFeatureCollection();
 	}
 
-	public GeoJsonLineStringFacade(List<BikeBo> bikeList) throws SQLException,
-			NamingException, IOException {
-		this.bikeList = bikeList;
+	public GeoJsonLineStringFacade(List<BikeBo> bikeList) throws SQLException, NamingException, IOException {
+		Bikes bikes = new Bikes(bikeList);
+		bikeMap = bikes.getBikeMap();
+		setFeatureCollection();
+	}
+
+	public GeoJsonLineStringFacade(AskFor<Map<Integer, List<BikeBo>>> askFor) {
+		bikeMap = askFor.getData();
 		setFeatureCollection();
 	}
 
 	void setFeatureCollection() {
 		featureCollection = new FeatureCollection();
-		Bikes bikes = new Bikes(this.bikeList);
-		Map<Integer, List<BikeBo>> bikeMap = bikes.getBikeMap();
 
 		for (Integer key : bikeMap.keySet()) {
 			List<BikeBo> bikeList = bikeMap.get(key);
@@ -79,8 +83,7 @@ public class GeoJsonLineStringFacade implements Facade {
 					coordinates.append(bikeBo.lng);
 					coordinates.append("]");
 
-					String timestamp = new SimpleDateFormat(DATE_FORMAT,
-							Locale.GERMAN).format(bikeBo.getTimestamp());
+					String timestamp = new SimpleDateFormat(DATE_FORMAT, Locale.GERMAN).format(bikeBo.getTimestamp());
 					timestamps.append(timestamp);
 
 				}

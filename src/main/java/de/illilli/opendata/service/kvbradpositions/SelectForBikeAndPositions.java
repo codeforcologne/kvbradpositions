@@ -8,10 +8,10 @@ import javax.naming.NamingException;
 /**
  * Just one Bike, but all positions.
  */
+@Deprecated
 public class SelectForBikeAndPositions extends SelectBike {
 
-	public SelectForBikeAndPositions(Integer number) throws SQLException,
-			NamingException, IOException {
+	public SelectForBikeAndPositions(Integer number) throws SQLException, NamingException, IOException {
 
 		queryString = "/queryForBikeAndPositions.sql";
 		runSelect(number);
