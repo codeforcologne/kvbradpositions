@@ -10,18 +10,15 @@ import org.junit.Before;
 
 public class BikesDataTablesFacadeTest {
 
-	private static final Logger logger = Logger
-			.getLogger(BikesDataTablesFacadeTest.class);
+	private static final Logger logger = Logger.getLogger(BikesDataTablesFacadeTest.class);
 
 	@Before
 	public void setUp() throws Exception {
 	}
 
-	public static void main(String[] args) throws IOException, SQLException,
-			NamingException {
+	public static void main(String[] args) throws IOException, SQLException, NamingException {
 		ConnectionFactory.setUpConnectionForJndi();
-		String json = new BikesDataTablesFacade(
-				new SelectForAllBikesAndPositions()).getJson();
+		String json = new BikesDataTablesFacade(new AskForBikesList()).getJson();
 		logger.info(json);
 	}
 
