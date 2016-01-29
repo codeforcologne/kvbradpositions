@@ -13,10 +13,8 @@ public class AskForBikesMapTest {
 	public void setUp() throws Exception {
 	}
 
-	public static void main(String[] args) throws MalformedURLException,
-			IOException {
-		Map<Integer, List<BikeBo>> bikesMap = new AskForBikesMap()
-				.getBikesMap();
+	public static void main(String[] args) throws MalformedURLException, IOException {
+		Map<Integer, List<BikeBo>> bikesMap = new AskForBikesMap().getData();
 
 		System.out.println(bikesMap);
 	}
