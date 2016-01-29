@@ -19,19 +19,18 @@ public class BikesDataTablesFacade implements Facade {
 
 	private List<BikeBo> bikeList;
 
-	public BikesDataTablesFacade(SelectBike selectBike) throws SQLException,
-			NamingException, IOException {
-		bikeList = selectBike.getBikeBoList();
+	public BikesDataTablesFacade(List<BikeBo> bikeList) throws SQLException, NamingException, IOException {
+		this.bikeList = bikeList;
 	}
 
-	public BikesDataTablesFacade(List<BikeBo> bikeList) throws SQLException,
-			NamingException, IOException {
-		this.bikeList = bikeList;
+	public BikesDataTablesFacade(AskFor<List<BikeBo>> askFor) {
+		this.bikeList = askFor.getData();
 	}
 
 	@Override
 	public String getJson() throws JsonProcessingException {
-		return new Gson().toJson(bikeList);
+		String json = "{\"data\":" + new Gson().toJson(bikeList) + "}";
+		return json;
 	}
 
 }

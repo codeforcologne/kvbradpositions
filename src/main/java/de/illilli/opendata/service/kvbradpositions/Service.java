@@ -80,15 +80,15 @@ public class Service {
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Path("/datatable")
 	public String getAllBikesForDataTables() throws SQLException, NamingException, IOException {
-		Facade facade = new BikesDataTablesFacade(new SelectForAllBikesAndPositions());
+		Facade facade = new BikesDataTablesFacade(new AskForBikesList());
 		return facade.getJson();
 	}
 
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
-	 * LineString. Example:
-	 * <a href="http://localhost:8080/kvbradpositions/service/geojson/21577" >
-	 * /kvbradpositions/service/geojson/&lt;number&gt;</a>
+	 * LineString. Example: <a href=
+	 * "http://localhost:8080/kvbradpositions/service/geojson/bike/21577" >
+	 * /kvbradpositions/service/geojson/bike/&lt;number&gt;</a>
 	 * 
 	 * @param number
 	 * @return
