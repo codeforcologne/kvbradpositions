@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import de.illilli.opendata.service.Config;
 
-public class AskForBikesMap {
+public class AskForBikesMap implements AskFor<Map<Integer, List<BikeBo>>> {
 
 	String url = Config.getProperty("kvblive.bikesmap.url");
 	private InputStream inputStream;
@@ -23,18 +23,24 @@ public class AskForBikesMap {
 
 	public AskForBikesMap() throws MalformedURLException, IOException {
 		inputStream = new URL(url).openStream();
+		setBikesMap();
 	}
 
-	public AskForBikesMap(InputStream inputStream) {
+	public AskForBikesMap(InputStream inputStream) throws IOException {
 		this.inputStream = inputStream;
+		setBikesMap();
 	}
 
-	public Map<Integer, List<BikeBo>> getBikesMap() throws IOException {
+	void setBikesMap() throws IOException {
 		Gson gson = new Gson();
 		Type type = new TypeToken<Map<Integer, List<BikeBo>>>() {
 		}.getType();
 		String json = IOUtils.toString(inputStream);
 		bikesMap = gson.fromJson(json, type);
+	}
+
+	@Override
+	public Map<Integer, List<BikeBo>> getData() {
 		return bikesMap;
 	}
 }
