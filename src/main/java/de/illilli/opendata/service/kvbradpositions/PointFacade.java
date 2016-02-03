@@ -1,10 +1,6 @@
 package de.illilli.opendata.service.kvbradpositions;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.naming.NamingException;
 
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
@@ -21,13 +17,7 @@ public class PointFacade implements Facade {
 	private FeatureCollection featureCollection;
 	private List<BikeBo> bikeList;
 
-	public PointFacade() throws SQLException, NamingException, IOException {
-		bikeList = new SelectForAllBikesAndPositions().getBikeBoList();
-		setFeatureCollection();
-	}
-
-	public PointFacade(List<BikeBo> bikeList) throws SQLException,
-			NamingException, IOException {
+	public PointFacade(List<BikeBo> bikeList) {
 		this.bikeList = bikeList;
 		setFeatureCollection();
 	}

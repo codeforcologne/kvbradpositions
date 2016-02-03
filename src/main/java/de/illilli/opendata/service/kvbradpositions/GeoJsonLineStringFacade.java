@@ -1,14 +1,10 @@
 package de.illilli.opendata.service.kvbradpositions;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.naming.NamingException;
 
 import org.geojson.Feature;
 import org.geojson.FeatureCollection;
@@ -30,14 +26,7 @@ public class GeoJsonLineStringFacade implements Facade {
 	Map<Integer, List<BikeBo>> bikeMap;
 	final static String DATE_FORMAT = "dd.MM.yyyy hh:mm";
 
-	@Deprecated
-	public GeoJsonLineStringFacade(SelectBike selectBike) throws SQLException, NamingException, IOException {
-		Bikes bikes = new Bikes(selectBike.getBikeBoList());
-		bikeMap = bikes.getBikeMap();
-		setFeatureCollection();
-	}
-
-	public GeoJsonLineStringFacade(List<BikeBo> bikeList) throws SQLException, NamingException, IOException {
+	public GeoJsonLineStringFacade(List<BikeBo> bikeList) {
 		Bikes bikes = new Bikes(bikeList);
 		bikeMap = bikes.getBikeMap();
 		setFeatureCollection();
