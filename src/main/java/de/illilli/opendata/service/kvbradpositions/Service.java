@@ -101,7 +101,7 @@ public class Service {
 	@Path("/geojson/bike/{number}")
 	public String getSimpleLineStridsng(@PathParam("number") int number)
 			throws SQLException, NamingException, IOException {
-		Facade facade = new GeoJsonLineStringFacade(new SelectForBikeAndPositions(number));
+		Facade facade = new GeoJsonLineStringFacade(new AskForBikesList(number).getData());
 		return facade.getJson();
 	}
 

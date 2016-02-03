@@ -25,6 +25,11 @@ public class AskForBikesList implements AskFor<List<BikeBo>> {
 		setBikesList();
 	}
 
+	public AskForBikesList(int number) throws MalformedURLException, IOException {
+		inputStream = new URL(url + "/bike/" + number).openStream();
+		setBikesList();
+	}
+
 	public AskForBikesList(InputStream inputStream) throws IOException {
 		this.inputStream = inputStream;
 		setBikesList();
