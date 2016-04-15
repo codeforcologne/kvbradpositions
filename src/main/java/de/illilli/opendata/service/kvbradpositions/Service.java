@@ -108,8 +108,8 @@ public class Service {
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
 	 * LineString. Example: <a href=
-	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition/geojson"
-	 * > /kvbradpositions/service/allbikeslatestposition/geojson</a>
+	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition?geojson"
+	 * > /kvbradpositions/service/allbikeslatestposition?geojson</a>
 	 * 
 	 * @param number
 	 * @return
@@ -119,7 +119,7 @@ public class Service {
 	 */
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/allbikeslatestposition/geojson")
+	@Path("/allbikeslatestposition")
 	public String getAllbikeslatestposition() throws SQLException, NamingException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
