@@ -123,7 +123,14 @@ public class Service {
 	public String getAllbikeslatestposition() throws SQLException, NamingException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		Facade facade = new LastPositionsFacade(new AskForAllbikeslatestposition());
+		boolean geojson = request.getParameter("geojson") != null;
+		Facade facade = null;
+		if (geojson) {
+			facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
+		} else {
+			facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
+		}
+
 		return facade.getJson();
 	}
 

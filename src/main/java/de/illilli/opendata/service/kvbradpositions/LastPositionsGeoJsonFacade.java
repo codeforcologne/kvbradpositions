@@ -25,13 +25,13 @@ import de.illilli.opendata.service.Facade;
  * @author wolfram
  *
  */
-public class LastPositionsFacade implements Facade {
+public class LastPositionsGeoJsonFacade implements Facade {
 
 	private List<BikeBo> bikeList;
 	private FeatureCollection featureCollection = new FeatureCollection();
 	final static String DATE_FORMAT = "dd.MM.yyyy hh:mm";
 
-	public LastPositionsFacade(AskFor<List<BikeBo>> askForAllBikeslatestpositions) throws IOException {
+	public LastPositionsGeoJsonFacade(AskFor<List<BikeBo>> askForAllBikeslatestpositions) throws IOException {
 		this.bikeList = askForAllBikeslatestpositions.getData();
 		setFeatureCollection();
 	}
