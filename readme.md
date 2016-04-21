@@ -8,7 +8,14 @@ Dieser Service erweitert den Service [kvbradlive](https://github.com/codeforcolo
 - /kvbradpositions/service/datatable; liefert alle Inforamationen im datatable - format
 - /kvbradpositions/service/geojson/21577; liefert alle Informationen zu einem durch die nummer 
 identifizierten Fahrrad
-- /kvbradpositions/service/allbikeslatestposition/geojson;
+
+### allbikeslatestposition
+
+Folgende REST End Points geben die letzten Standorte der Fahrräder zurück
+
+- /kvbradpositions/service/allbikeslatestposition
+- /kvbradpositions/service/allbikeslatestposition?geojson
+- /kvbradpositions/service/allbikeslatestposition?datatables
 
 ## Entwicklungsstand
 
