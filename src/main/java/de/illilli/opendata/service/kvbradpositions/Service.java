@@ -107,9 +107,18 @@ public class Service {
 
 	/**
 	 * Method to return all positions of all bicyles like a GeoJson -
-	 * LineString. Example: <a href=
+	 * LineString. Examples:
+	 * <ul>
+	 * <li><a href=
+	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition" >
+	 * /kvbradpositions/service/allbikeslatestposition</a></li>
+	 * <li><a href=
 	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition?geojson"
-	 * > /kvbradpositions/service/allbikeslatestposition?geojson</a>
+	 * > /kvbradpositions/service/allbikeslatestposition?geojson</a></li>
+	 * <li><a href=
+	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition?datatables"
+	 * > /kvbradpositions/service/allbikeslatestposition?datatables</a></li>
+	 * </ul>
 	 * 
 	 * @param number
 	 * @return
@@ -124,11 +133,14 @@ public class Service {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		boolean geojson = request.getParameter("geojson") != null;
+		boolean datatables = request.getParameter("datatables") != null;
 		Facade facade = null;
 		if (geojson) {
 			facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
+		} else if (datatables) {
+			facade = new LastPositionsDataTablesFacade(new AskForAllbikeslatestposition());
 		} else {
-			facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
+			facade = new LastPositionsFacade(new AskForAllbikeslatestposition());
 		}
 
 		return facade.getJson();
