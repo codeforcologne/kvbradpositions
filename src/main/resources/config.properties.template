@@ -2,3 +2,4 @@ kvblive.bikesmap.url=http://localhost:8080/kvbradlive/service/bikesmap
 kvblive.bikeslist.allbikeslatestposition.url=http://localhost:8080/kvbradlive/service/allbikeslatestposition/bikeslist
 kvbaddress.latlng.url=http://localhost:8080/kvbradaddress/service
 kvblive.bikeslist.url=http://localhost:8080/kvbradlive/service
+kvbrouting.bikeslist.allbikesaggregated.url=http://localhost:8080/kvbradrouting/service/aggregated
