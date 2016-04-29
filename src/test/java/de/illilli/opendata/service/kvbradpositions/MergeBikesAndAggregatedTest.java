@@ -18,20 +18,19 @@ public class MergeBikesAndAggregatedTest {
 		List<BikeAndAggregatedBo> boList = new MergeBikesAndAggregated(MergeBikesAndAggregatedTest.getbikeList(),
 				MergeBikesAndAggregatedTest.getAggregatedList()).getData();
 		BikeAndAggregatedBo bikeAndAggregated = boList.get(0);
-		int expected = 0;
-		int actual = bikeAndAggregated.getCountdata();
+		String expected = "0";
+		String actual = bikeAndAggregated.getCount();
 		Assert.assertEquals(expected, actual);
 
 		bikeAndAggregated = boList.get(1);
-		expected = 1;
-		actual = bikeAndAggregated.getCountdata();
+		expected = "1";
+		actual = bikeAndAggregated.getCount();
 		Assert.assertEquals(expected, actual);
 
 		bikeAndAggregated = boList.get(2);
-		expected = 2;
-		actual = bikeAndAggregated.getCountdata();
+		expected = "2";
+		actual = bikeAndAggregated.getCount();
 		Assert.assertEquals(expected, actual);
-
 	}
 
 	static List<BikeBo> getbikeList() {

@@ -33,8 +33,11 @@ public class MergeBikesAndAggregated {
 				AggregatedBo aggregated = aggregatedList.get(index);
 
 				bo.setCount("" + aggregated.getCountdata());
-				bo.setDistance("" + aggregated.getDistance());
-				bo.setTime("" + aggregated.getTimeinmillis());
+				String distance = "" + aggregated.getDistance();
+				bo.setDistance(distance);
+
+				String time = "" + aggregated.getTimeinmillis();
+				bo.setTime(time);
 			} else {
 				bo.setCount(NA);
 				bo.setDistance(NA);
