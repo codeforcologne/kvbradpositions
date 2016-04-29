@@ -10,19 +10,23 @@ public class MergeBikesAndAggregated {
 	public MergeBikesAndAggregated(final List<BikeBo> bikeList, final List<AggregatedBo> aggregatedList) {
 
 		for (BikeBo bike : bikeList) {
-			int index = aggregatedList.indexOf(new AggregatedBo(bike.getNumber()));
-			AggregatedBo aggregated = aggregatedList.get(index);
 			BikeAndAggregatedBo bo = new BikeAndAggregatedBo();
 			bo.setBike(bike.getBike());
-			bo.setCountdata(aggregated.getCountdata());
-			bo.setDistance(aggregated.getDistance());
 			bo.setLat(bike.getLat());
 			bo.setLng(bike.getLng());
 			bo.setName(bike.getName());
 			bo.setNumber(bike.getNumber());
-			bo.setTimeinmmillis(aggregated.getTimeinmillis());
 			bo.setTimestamp(bike.getTimestamp());
 			bo.setUid(bike.getUid());
+
+			int index = aggregatedList.indexOf(new AggregatedBo(bike.getNumber()));
+			if (index > -1) {
+				AggregatedBo aggregated = aggregatedList.get(index);
+				bo.setCountdata(aggregated.getCountdata());
+				bo.setDistance(aggregated.getDistance());
+				bo.setTimeinmmillis(aggregated.getTimeinmillis());
+			}
+
 			bikeAndAggregatedList.add(bo);
 		}
 	}

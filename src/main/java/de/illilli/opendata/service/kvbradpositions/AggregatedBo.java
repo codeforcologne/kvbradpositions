@@ -11,6 +11,13 @@ public class AggregatedBo {
 
 	}
 
+	/**
+	 * Search for an aggregatedBo in <code>MergeBikesAndAggregated</code>.
+	 * 
+	 * @see MergeBikesAndAggregated
+	 * 
+	 * @param number
+	 */
 	public AggregatedBo(int number) {
 		this.number = number;
 	}
@@ -58,6 +65,12 @@ public class AggregatedBo {
 		return result;
 	}
 
+	/**
+	 * Equals only number for enabling searching in MergeBikesAndAggregated by
+	 * <code>aggregatedList.indexOf(new AggregatedBo(bike.getNumber()))</code>.
+	 * 
+	 * @See MergeBikesAndAggregated
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
