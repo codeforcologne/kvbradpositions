@@ -1,7 +1,12 @@
 package de.illilli.opendata.service.kvbradpositions;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 public class MergeBikesAndAggregated {
 
@@ -33,10 +38,12 @@ public class MergeBikesAndAggregated {
 				AggregatedBo aggregated = aggregatedList.get(index);
 
 				bo.setCount("" + aggregated.getCountdata());
-				String distance = "" + aggregated.getDistance();
+				NumberFormat formatter = new DecimalFormat("#0.000");
+				String distance = formatter
+						.format(new BigDecimal(aggregated.getDistance()).divide(new BigDecimal(1000)));
 				bo.setDistance(distance);
 
-				String time = "" + aggregated.getTimeinmillis();
+				String time = DateFormatUtils.format(aggregated.getTimeinmillis(), "HH:mm");
 				bo.setTime(time);
 			} else {
 				bo.setCount(NA);
