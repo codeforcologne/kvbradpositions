@@ -9,43 +9,41 @@ package de.illilli.opendata.service.kvbradpositions;
  */
 public class BikeAndAggregatedBo extends BikeBo {
 
-	private long timeinmmillis;
-	private double distance;
-	private int countdata;
+	private String time;
+	private String distance;
+	private String count;
 
-	public long getTimeinmmillis() {
-		return timeinmmillis;
+	public String getTime() {
+		return time;
 	}
 
-	public void setTimeinmmillis(long timeinmmillis) {
-		this.timeinmmillis = timeinmmillis;
+	public void setTime(String time) {
+		this.time = time;
 	}
 
-	public double getDistance() {
+	public String getDistance() {
 		return distance;
 	}
 
-	public void setDistance(double distance) {
+	public void setDistance(String distance) {
 		this.distance = distance;
 	}
 
-	public int getCountdata() {
-		return countdata;
+	public String getCount() {
+		return count;
 	}
 
-	public void setCountdata(int countdata) {
-		this.countdata = countdata;
+	public void setCount(String count) {
+		this.count = count;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + countdata;
-		long temp;
-		temp = Double.doubleToLongBits(distance);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (int) (timeinmmillis ^ (timeinmmillis >>> 32));
+		result = prime * result + ((count == null) ? 0 : count.hashCode());
+		result = prime * result + ((distance == null) ? 0 : distance.hashCode());
+		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
 
@@ -58,13 +56,27 @@ public class BikeAndAggregatedBo extends BikeBo {
 		if (getClass() != obj.getClass())
 			return false;
 		BikeAndAggregatedBo other = (BikeAndAggregatedBo) obj;
-		if (countdata != other.countdata)
+		if (count == null) {
+			if (other.count != null)
+				return false;
+		} else if (!count.equals(other.count))
 			return false;
-		if (Double.doubleToLongBits(distance) != Double.doubleToLongBits(other.distance))
+		if (distance == null) {
+			if (other.distance != null)
+				return false;
+		} else if (!distance.equals(other.distance))
 			return false;
-		if (timeinmmillis != other.timeinmmillis)
+		if (time == null) {
+			if (other.time != null)
+				return false;
+		} else if (!time.equals(other.time))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "BikeAndAggregatedBo [time=" + time + ", distance=" + distance + ", count=" + count + "]";
 	}
 
 }
