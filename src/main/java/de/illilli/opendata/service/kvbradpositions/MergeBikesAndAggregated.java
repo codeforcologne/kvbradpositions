@@ -5,6 +5,15 @@ import java.util.List;
 
 public class MergeBikesAndAggregated {
 
+	/**
+	 * <p>
+	 * N/A: not available
+	 * </p>
+	 * <p>
+	 * <a href="https://de.wikipedia.org/wiki/N/A">Wikipedia: N/A</a>
+	 */
+	public static final String NA = "N/A";
+
 	private List<BikeAndAggregatedBo> bikeAndAggregatedList = new ArrayList<BikeAndAggregatedBo>();
 
 	public MergeBikesAndAggregated(final List<BikeBo> bikeList, final List<AggregatedBo> aggregatedList) {
@@ -22,9 +31,14 @@ public class MergeBikesAndAggregated {
 			int index = aggregatedList.indexOf(new AggregatedBo(bike.getNumber()));
 			if (index > -1) {
 				AggregatedBo aggregated = aggregatedList.get(index);
-				bo.setCountdata(aggregated.getCountdata());
-				bo.setDistance(aggregated.getDistance());
-				bo.setTimeinmmillis(aggregated.getTimeinmillis());
+
+				bo.setCount("" + aggregated.getCountdata());
+				bo.setDistance("" + aggregated.getDistance());
+				bo.setTime("" + aggregated.getTimeinmillis());
+			} else {
+				bo.setCount(NA);
+				bo.setDistance(NA);
+				bo.setTime(NA);
 			}
 
 			bikeAndAggregatedList.add(bo);
