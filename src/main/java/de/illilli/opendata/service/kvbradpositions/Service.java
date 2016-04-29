@@ -138,7 +138,7 @@ public class Service {
 		if (geojson) {
 			facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
 		} else if (datatables) {
-			facade = new LastPositionsDataTablesFacade(new AskForAllbikeslatestposition());
+			facade = new LastPositionsDataTablesFacade(new AskForAllbikeslatestposition(), new AskForAggregated());
 		} else {
 			facade = new LastPositionsFacade(new AskForAllbikeslatestposition());
 		}

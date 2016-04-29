@@ -5,8 +5,7 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -16,36 +15,35 @@ import com.google.gson.reflect.TypeToken;
 
 import de.illilli.opendata.service.Config;
 
-public class AskForAllBikesAggregated implements AskFor<Map<Integer, BikeAggregatedBo>> {
+public class AskForAggregated implements AskFor<List<AggregatedBo>> {
 
-	private static final Logger logger = Logger.getLogger(AskForAllBikesAggregated.class);
+	private static final Logger logger = Logger.getLogger(AskForAggregated.class);
 
 	String url = Config.getProperty("kvbrouting.bikeslist.allbikesaggregated.url");
-	private Map<Integer, BikeAggregatedBo> bikesMap;
+	private List<AggregatedBo> bikesList;
 	private InputStream inputStream;
 	private String json;
 
-	public AskForAllBikesAggregated() throws MalformedURLException, IOException {
-		bikesMap = new Hashtable<Integer, BikeAggregatedBo>();
+	public AskForAggregated() throws MalformedURLException, IOException {
 		inputStream = new URL(url).openStream();
 	}
 
-	public AskForAllBikesAggregated(InputStream inputStream) {
+	public AskForAggregated(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
 
 	@Override
-	public Map<Integer, BikeAggregatedBo> getData() {
+	public List<AggregatedBo> getData() {
 		Gson gson = new Gson();
-		Type type = new TypeToken<Map<Integer, BikeAggregatedBo>>() {
+		Type type = new TypeToken<List<AggregatedBo>>() {
 		}.getType();
 		try {
 			json = IOUtils.toString(inputStream);
 		} catch (IOException e) {
 			logger.error(e);
 		}
-		bikesMap = gson.fromJson(json, type);
-		return bikesMap;
+		bikesList = gson.fromJson(json, type);
+		return bikesList;
 	}
 
 }

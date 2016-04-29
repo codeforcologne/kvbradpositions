@@ -10,14 +10,25 @@ import de.illilli.opendata.service.Facade;
 public class LastPositionsDataTablesFacade implements Facade {
 
 	private List<BikeBo> bikeList;
+	private List<AggregatedBo> aggregatedList;
+	private List<BikeAndAggregatedBo> bikeAndAggregatedList;
 
-	public LastPositionsDataTablesFacade(AskFor<List<BikeBo>> askForAllBikeslatestpositions) {
+	public LastPositionsDataTablesFacade(AskFor<List<BikeBo>> askForAllBikeslatestpositions,
+			AskFor<List<AggregatedBo>> askForAggregated) {
 		this.bikeList = askForAllBikeslatestpositions.getData();
+		this.aggregatedList = askForAggregated.getData();
+		this.bikeAndAggregatedList = new MergeBikesAndAggregated(this.bikeList, this.aggregatedList).getData();
+	}
+
+	public LastPositionsDataTablesFacade(List<BikeBo> bikeList, List<AggregatedBo> aggregatedList) {
+		this.bikeList = bikeList;
+		this.aggregatedList = aggregatedList;
+		this.bikeAndAggregatedList = new MergeBikesAndAggregated(this.bikeList, this.aggregatedList).getData();
 	}
 
 	@Override
 	public String getJson() throws JsonProcessingException {
-		String json = "{\"data\":" + new Gson().toJson(bikeList) + "}";
+		String json = "{\"data\":" + new Gson().toJson(bikeAndAggregatedList) + "}";
 		return json;
 	}
 
