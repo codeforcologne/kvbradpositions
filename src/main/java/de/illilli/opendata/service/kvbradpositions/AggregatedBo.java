@@ -72,4 +72,10 @@ public class AggregatedBo {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "AggregatedBo [number=" + number + ", timeinmillis=" + timeinmillis + ", distance=" + distance
+				+ ", countdata=" + countdata + "]";
+	}
+
 }
