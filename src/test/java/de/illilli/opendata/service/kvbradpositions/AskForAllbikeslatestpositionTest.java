@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.Before;
 
+import de.illilli.opendata.service.AskFor;
+
 public class AskForAllbikeslatestpositionTest {
 
 	@Before

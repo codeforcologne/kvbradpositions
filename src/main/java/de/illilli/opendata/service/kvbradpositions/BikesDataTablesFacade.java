@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 
+import de.illilli.opendata.service.AskFor;
 import de.illilli.opendata.service.Facade;
 
 /**

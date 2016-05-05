@@ -16,6 +16,7 @@ import org.geojson.Point;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.illilli.opendata.service.AskFor;
 import de.illilli.opendata.service.Facade;
 
 /**

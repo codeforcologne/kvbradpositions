@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.junit.Before;
 
+import de.illilli.opendata.service.AskFor;
+
 public class AskForAllbikesTest {
 
 	@Before

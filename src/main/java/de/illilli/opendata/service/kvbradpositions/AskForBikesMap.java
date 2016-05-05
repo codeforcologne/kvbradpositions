@@ -13,6 +13,7 @@ import org.apache.commons.io.IOUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import de.illilli.opendata.service.AskFor;
 import de.illilli.opendata.service.Config;
 
 public class AskForBikesMap implements AskFor<Map<Integer, List<BikeBo>>> {

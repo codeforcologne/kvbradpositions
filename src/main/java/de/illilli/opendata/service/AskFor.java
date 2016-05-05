@@ -1,4 +1,4 @@
-package de.illilli.opendata.service.kvbradpositions;
+package de.illilli.opendata.service;
 
 public interface AskFor<T> {
 

@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import de.illilli.opendata.service.AskFor;
 import de.illilli.opendata.service.Config;
 
 public class AskForAllbikeslatestposition implements AskFor<List<BikeBo>> {
