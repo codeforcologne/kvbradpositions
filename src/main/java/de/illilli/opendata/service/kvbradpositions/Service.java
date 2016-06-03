@@ -103,7 +103,8 @@ public class Service {
 			throws SQLException, NamingException, IOException {
 		boolean geojson = request.getParameter("geojson") != null;
 		boolean datatables = request.getParameter("datatables") != null;
-		Facade facade = new GeoJsonLineStringFacade(new AskForBikesList(number).getData());
+		Facade facade = new GeoJsonPositionsAndRoutesFacade(new AskForBikesList(number).getData(),
+				new AskForBikeRoutings(number).getData());
 		return facade.getJson();
 	}
 
