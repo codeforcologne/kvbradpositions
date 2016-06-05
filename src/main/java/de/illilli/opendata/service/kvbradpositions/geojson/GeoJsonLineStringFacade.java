@@ -1,4 +1,4 @@
-package de.illilli.opendata.service.kvbradpositions;
+package de.illilli.opendata.service.kvbradpositions.geojson;
 
 import java.text.SimpleDateFormat;
 import java.util.Hashtable;
@@ -16,6 +16,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.illilli.opendata.service.AskFor;
 import de.illilli.opendata.service.Facade;
+import de.illilli.opendata.service.kvbradpositions.BikeBo;
+import de.illilli.opendata.service.kvbradpositions.Bikes;
 
 /**
  * This Facade returns GeoJson LineString for a List of
@@ -53,7 +55,7 @@ public class GeoJsonLineStringFacade implements Facade {
 				StringBuilder timestamps = new StringBuilder();
 				boolean firstRun = true;
 				for (BikeBo bikeBo : bikeList) {
-					LngLatAlt geometry = new LngLatAlt(bikeBo.lng, bikeBo.lat);
+					LngLatAlt geometry = new LngLatAlt(bikeBo.getLng(), bikeBo.getLat());
 					lineString.add(geometry);
 					feature.setGeometry(lineString);
 					properties.put("name", bikeBo.getName());
@@ -68,9 +70,9 @@ public class GeoJsonLineStringFacade implements Facade {
 						timestamps.append(",");
 					}
 					coordinates.append("[");
-					coordinates.append(bikeBo.lat);
+					coordinates.append(bikeBo.getLng());
 					coordinates.append(",");
-					coordinates.append(bikeBo.lng);
+					coordinates.append(bikeBo.getLat());
 					coordinates.append("]");
 
 					String timestamp = new SimpleDateFormat(DATE_FORMAT, Locale.GERMAN).format(bikeBo.getTimestamp());

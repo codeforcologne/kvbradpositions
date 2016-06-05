@@ -1,4 +1,4 @@
-package de.illilli.opendata.service.kvbradpositions;
+package de.illilli.opendata.service.kvbradpositions.geojson;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -7,6 +7,10 @@ import java.util.List;
 import org.junit.Before;
 
 import de.illilli.opendata.service.Facade;
+import de.illilli.opendata.service.kvbradpositions.AskForBikeRoutings;
+import de.illilli.opendata.service.kvbradpositions.AskForBikesList;
+import de.illilli.opendata.service.kvbradpositions.BikeBo;
+import de.illilli.opendata.service.kvbradpositions.RoutingBo;
 
 public class GeoJsonPositionsAndRoutesFacadeTest {
 

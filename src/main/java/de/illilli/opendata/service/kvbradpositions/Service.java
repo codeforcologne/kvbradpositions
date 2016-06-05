@@ -15,6 +15,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import de.illilli.opendata.service.Facade;
+import de.illilli.opendata.service.kvbradpositions.geojson.GeoJsonLineStringFacade;
+import de.illilli.opendata.service.kvbradpositions.geojson.GeoJsonPositionsAndRoutesFacade;
 
 @Path("/")
 public class Service {
