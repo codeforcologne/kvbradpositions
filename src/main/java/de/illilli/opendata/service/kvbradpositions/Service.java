@@ -121,6 +121,10 @@ public class Service {
 	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition?geojson"
 	 * > /kvbradpositions/service/allbikeslatestposition?geojson</a></li>
 	 * <li><a href=
+	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition?bbox=50.940692,6.951216,50.931568,6.977266&geojson"
+	 * > /kvbradpositions/service/allbikeslatestposition?bbox={lat,lng,lat,lng}&
+	 * geojson</a></li>
+	 * <li><a href=
 	 * "http://localhost:8080/kvbradpositions/service/allbikeslatestposition?datatables"
 	 * > /kvbradpositions/service/allbikeslatestposition?datatables</a></li>
 	 * </ul>
@@ -139,9 +143,14 @@ public class Service {
 		response.setCharacterEncoding("UTF-8");
 		boolean geojson = request.getParameter("geojson") != null;
 		boolean datatables = request.getParameter("datatables") != null;
+		String bbox = request.getParameter("bbox");
 		Facade facade = null;
 		if (geojson) {
-			facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
+			if (bbox != null && bbox.length() > 1) {
+				facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition(bbox));
+			} else {
+				facade = new LastPositionsGeoJsonFacade(new AskForAllbikeslatestposition());
+			}
 		} else if (datatables) {
 			facade = new LastPositionsDataTablesFacade(new AskForAllbikeslatestposition(), new AskForAggregated());
 		} else {

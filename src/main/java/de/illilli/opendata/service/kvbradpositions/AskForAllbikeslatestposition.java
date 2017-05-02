@@ -31,6 +31,11 @@ public class AskForAllbikeslatestposition implements AskFor<List<BikeBo>> {
 		inputStream = new URL(url).openStream();
 	}
 
+	public AskForAllbikeslatestposition(String bbox) throws MalformedURLException, IOException {
+		bikesList = new ArrayList<BikeBo>();
+		inputStream = new URL(url + "?bbox=" + bbox).openStream();
+	}
+
 	public AskForAllbikeslatestposition(InputStream inputStream) {
 		this.inputStream = inputStream;
 	}
